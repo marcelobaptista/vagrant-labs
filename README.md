@@ -13,7 +13,7 @@ vagrant up
 ```
 ### Iniciar o ambiente  Kubernetes
 ```sh 
-cd vagrant-labs/vagrant-zabbix
+cd vagrant-labs/vagrant-kubernetes
 vagrant up
 ```
 ### Desligar um ambiente
