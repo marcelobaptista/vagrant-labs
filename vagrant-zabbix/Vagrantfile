@@ -3,6 +3,7 @@ config.vm.define "zbxserver"do |zbxserver|
     zbxserver.vm.box = "generic/centos8"
     zbxserver.vm.hostname = "zbx-server"
     zbxserver.vm.network "private_network", ip: "192.168.56.50", :netmask => "255.255.255.0"
+    zbxserver.vm.provision "file", source: "files/.", destination: "/home/vagrant/"
     zbxserver.vm.provision "shell", path: "post-install.sh"
     zbxserver.vm.provision "shell", path: "install-zbx-server.sh"
     zbxserver.vm.provision "shell", path: "install-grafana.sh"
@@ -18,6 +19,7 @@ config.vm.define "srv01" do |srv01|
     srv01.vm.box = "generic/centos8"
     srv01.vm.hostname = "srv01"
     srv01.vm.network "private_network", ip: "192.168.56.51", :netmask => "255.255.255.0"
+    srv01.vm.provision "file", source: "files/.", destination: "/home/vagrant/"
     srv01.vm.provision "shell", path: "post-install.sh"
     srv01.vm.provision "shell", path: "install-zbx-agent.sh"
         srv01.vm.provider "virtualbox" do |srv01|
