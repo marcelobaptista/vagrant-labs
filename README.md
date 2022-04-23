@@ -1,6 +1,6 @@
 # Vagrant Labs
 
-Laboratórios configurados durante meu aprendizado em tecnologias DevOps
+Laboratórios configurados durante meu aprendizado em tecnologias DevOps (em andamento)
 
 ## Configurações lab Zabbix/Grafana:
 
