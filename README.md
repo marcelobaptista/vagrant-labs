@@ -2,30 +2,36 @@
 
 Laboratórios configurados durante meu aprendizado em tecnologias DevOps (em andamento)
 
-## Configurações lab Zabbix/Grafana:
+## Como usar?
 
-|Máquina Virtual|Configurações|IP|
-|:---:|:---:|:---:|
-|zbx-server|CentOS 8, Grafana Server 8.5, Zabbix Server 6.0 (LTS), Apache e PostgreSQL/TimescaleDB|192.168.56.50/24|
-|srv01|CentOS 8, Zabbix Agent 6.0.3|192.168.56.51/24|
-|srv02|Windows Server 2019 Datacenter, Zabbix Agent 6.0.3|192.168.56.52/24|
+```sh git clone https://github.com/marcelobaptista/vagrant-labs.git
+```
+### Iniciar o ambiente Zabbix/Grafana:
+```sh cd vagrant-labs/vagrant-zabbix
+vagrant up
+```
+### Iniciar o ambiente  Kubernetes
+```sh cd vagrant-labs/vagrant-zabbix
+vagrant up
+```
+### Desligar um ambiente
+```sh cd pasta-do-ambiente
+vagrant halt
+```
+### Destruir um ambiente
+```sh cd pasta-do-ambiente
+vagrant destroy -f
+```
+### Modificar recursos das máquinas
+Editar o arquivo Vagrantfile na pasta do ambiente:
+```ruby zbxserver.memory = 4096 # Memória
+zbxserver.cpus = 4 # CPU
+zbxserver.vm.network "private_network", ip: "192.168.56.50", :netmask => "255.255.255.0"
+#private_network: rede interna VirtualBox, faixa de IP: 192.168.56.0/24 (4 primeiros são reservados)
+#public_network: utiliza a rede do hospedeiro, deverá ser declarado qual a interface irá fazer bridge. 
+#Exemplo de configuração: 
+#zbxserver.vm.network "public_network", ip: "192.168.51.50", :netmask => "255.255.255.0", bridge: "ensp50"
+```
 
-|Máquina Virtual|Hardware|
-|:---:|:---:|
-|zbx-server|4Gb de memória e 4 CPU's|
-|srv01|2Gb de memória e 2 CPU's|
-|srv02|4Gb de memória e 4 CPU's|
 
-
-**Usuário/Senha Zabbix frontend:** Admin/zabbix  | **Senha DB Zabbix:** Z4bb1xD4t4b4s3
-
-## Configurações lab Kubernetes:
-
-|Máquina Virtual|Configurações|IP|
-|:---:|:---:|:---:|
-|k8s|Ubuntu Server 20.04, Docker 20.10.14, Docker Compose 1.29.2, Kind 0.12.0, kubectl 1.23.6|192.168.56.10/24|
-
-|Máquina Virtual|Hardware|
-|:---:|:---:|
-|k8s|8Gb de memória e 8 CPU's|
 

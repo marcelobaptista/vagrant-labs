@@ -5,7 +5,7 @@ config.vm.define "zbxserver"do |zbxserver|
     zbxserver.vm.network "private_network", ip: "192.168.56.50", :netmask => "255.255.255.0"
     zbxserver.vm.provision "shell", path: "post-install.sh"
     zbxserver.vm.provision "shell", path: "install-zbx-server.sh"
-    # zbxserver.vm.provision "shell", path: "install-grafana.sh"
+    zbxserver.vm.provision "shell", path: "install-grafana.sh"
         zbxserver.vm.provider "virtualbox" do |zbxserver|
           zbxserver.customize ["modifyvm", :id, "--chipset", "ich9"]
           zbxserver.name = "zbx-server"
