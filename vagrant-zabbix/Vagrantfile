@@ -16,7 +16,7 @@ config.vm.define "zbxserver"do |zbxserver|
     end
 config.vm.define "zbxproxy"do |zbxproxy|
     zbxproxy.vm.box = "generic/centos8"
-    zbxproxy.vm.hostname = "zbx-proxy"
+    zbxproxy.vm.hostname = "zbxproxy"
     zbxproxy.vm.network "private_network", ip: "192.168.56.60", :netmask => "255.255.255.0"
     zbxproxy.vm.provision "file", source: "files/.", destination: "/home/vagrant/"
     zbxproxy.vm.provision "shell", path: "post-install.sh"
