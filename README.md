@@ -3,7 +3,6 @@
 Laboratórios configurados durante meu aprendizado em tecnologias DevOps (em andamento)
 
 ## Como usar?
-
 ```sh 
 git clone https://github.com/marcelobaptista/vagrant-labs.git
 ```
