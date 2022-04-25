@@ -2,7 +2,9 @@
 
 |Máquina Virtual|Configurações|Hardware|IP|
 |:---:|:---:|:---:|:---:|
-|k8s-master|Ubuntu Server 20.04, Docker 20.10.14, Docker Compose 1.29.2, Kind 0.12.0, kubectl 1.23.6|8Gb RAM / 8 CPU's|192.168.56.10|
+|k8s-master|Ubuntu Server 20.04, Docker 20.10.7, containerd.io 1.4.6, Kubernetes v1.23.6|8Gb RAM / 8 CPU's|192.168.56.10|
+|k8s-node01|Ubuntu Server 20.04, Docker 20.10.7, containerd.io 1.4.6, Kubernetes v1.23.6|2Gb RAM / 2 CPU's|192.168.56.11|
+|k8s-node02|Ubuntu Server 20.04, Docker 20.10.7, containerd.io 1.4.6, Kubernetes v1.23.6|2Gb RAM / 2 CPU's|192.168.56.12|
 
 ### Modificar recursos da máquina
 Editar o arquivo Vagrantfile na pasta do ambiente:

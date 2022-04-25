@@ -1,0 +1,121 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: Instalando pacotes de pré-requisitos
+    apt:
+      name: "{{ packages }}"
+      state: present
+      update_cache: yes
+    vars:
+      packages:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg-agent
+      - software-properties-common
+
+  - name: Adicionando chave de assinatura apt para o Docker
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+
+  - name: Adicionando repositório apt para o Docker
+    apt_repository:
+      repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
+      state: present
+
+  - name: Instalando Docker e suas dependências
+    apt: 
+      name: "{{ packages }}"
+      state: present
+      update_cache: yes
+    vars:
+      packages:
+      - docker-ce 
+      - docker-ce-cli 
+      - containerd.io
+    notify:
+      - docker status
+
+  - name: Adicionando usuário vagrant ao grupo docker
+    user:
+      name: vagrant
+      group: docker
+
+  - name: Configurando systemd para gerenciar o Docker
+    shell:
+      cmd: |
+        cat > /etc/docker/daemon.json << EOF
+        {
+          "exec-opts": ["native.cgroupdriver=systemd"],
+          "log-driver": "json-file",
+          "log-opts": {
+            "max-size": "100m"
+          },
+          "storage-driver": "overlay2"
+        }
+        EOF
+
+  - name: Reiniciando o serviço docker
+    service:
+      name: docker
+      daemon_reload: yes
+      state: restarted
+
+  - name: Removendo arquivo swap
+    mount:
+      name: "{{ item }}"
+      fstype: swap
+      state: absent
+    with_items:
+      - swap
+      - none
+
+  - name: Desabilitando swap
+    command: swapoff -a
+    when: ansible_swaptotal_mb > 0
+
+  - name: Adicionando chave de assinatura apt para o Kubernetes
+    apt_key:
+      url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+      state: present
+
+  - name: Adicionar repositório apt para o Kubernetes
+    apt_repository:
+      repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
+      state: present
+      filename: kubernetes.list
+
+  - name: Instalando Kubernetes
+    apt: 
+      name: "{{ packages }}"
+      state: present
+      update_cache: yes
+    vars:
+      packages:
+        - kubelet 
+        - kubeadm 
+        - kubectl
+
+  - name: Configurando o IP do node
+    lineinfile:
+      path: /etc/default/kubelet
+      line: KUBELET_EXTRA_ARGS=--node-ip={{ node_ip }}
+      create: yes
+
+  - name: Reiniciando serviço kubelet
+    service:
+      name: kubelet
+      daemon_reload: yes
+      state: restarted
+
+  - name: Copiando o arquivo join-command
+    copy: src=join-command dest=/tmp/join-command.sh mode=0777
+
+  - name: Incluindo node ao cluster
+    command: sh /tmp/join-command.sh
+
+  handlers:
+    - name: docker status
+      service: name=docker state=started

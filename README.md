@@ -2,6 +2,12 @@
 
 Laboratórios configurados durante meu aprendizado em tecnologias DevOps (em andamento)
 
+## Pré-requisitos
+
+- [Vagrant](https://www.vagrantup.com/downloads)
+- [VirtualBox](https://www.vagrantup.com/downloads)
+- [Ansible](https://www.vagrantup.com/downloads)
+
 ## Como usar?
 ```sh
 git clone https://github.com/marcelobaptista/vagrant-labs.git
