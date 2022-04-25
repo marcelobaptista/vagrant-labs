@@ -27,6 +27,11 @@ vagrant up
 cd pasta-do-ambiente
 vagrant halt
 ```
+### Desligar uma máquina
+```sh 
+cd pasta-do-ambiente
+vagrant halt srv01 # Exemplo
+```
 ### Destruir um ambiente
 ```sh 
 cd pasta-do-ambiente
