@@ -4,7 +4,8 @@ Laboratórios configurados durante meu aprendizado em tecnologias DevOps (em and
 
 ## Como usar?
 
-```sh git clone https://github.com/marcelobaptista/vagrant-labs.git
+```sh 
+git clone https://github.com/marcelobaptista/vagrant-labs.git
 ```
 ### Iniciar o ambiente Zabbix/Grafana:
 ```sh 
