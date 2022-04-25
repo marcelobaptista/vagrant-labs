@@ -5,8 +5,13 @@ Laboratórios configurados durante meu aprendizado em tecnologias DevOps (em and
 ## Pré-requisitos
 
 - [Vagrant](https://www.vagrantup.com/downloads)
+<<<<<<< HEAD
 - [VirtualBox](https://www.vagrantup.com/downloads)
 - [Ansible](https://www.vagrantup.com/downloads)
+=======
+- [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+- [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
+>>>>>>> c6cf70b (corrigido links)
 
 ## Como usar?
 ```sh
