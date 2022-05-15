@@ -12,5 +12,6 @@ alias enable="sudo systemctl enable --now"
 alias disable="sudo systemctl disable --now"
 alias status="systemctl status"
 alias kubectl="sudo kubectl"
-autoload -Uz compinit
-compinit
+unsetopt nomatch
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit

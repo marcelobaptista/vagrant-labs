@@ -25,6 +25,7 @@ dnf update -y
 dnf install -y nano git htop langpacks-pt_BR nmap rsync zsh
 git clone https://github.com/robbyrussell/oh-my-zsh.git /etc/oh-my-zsh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /etc/oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+sed -i "s/SHELL=\/bin\/sh/SHELL=\/bin\/sh/" /etc/default/useradd
 timedatectl set-timezone America/Sao_Paulo
 localectl set-keymap br-abnt2
 localectl set-locale LANG=pt_BR.utf8
