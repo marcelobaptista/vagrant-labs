@@ -17,9 +17,9 @@ git clone https://github.com/marcelobaptista/vagrant-labs.git
 cd vagrant-labs/vagrant-zabbix
 vagrant up
 ```
-### Iniciar o ambiente  Kubernetes
+### Iniciar o ambiente k8s
 ```sh 
-cd vagrant-labs/vagrant-kubernetes
+cd vagrant-labs/vagrant-k8s-ansible
 vagrant up
 ```
 ### Desligar um ambiente
