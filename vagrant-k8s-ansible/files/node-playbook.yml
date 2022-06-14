@@ -94,9 +94,9 @@
       update_cache: yes
     vars:
       packages:
-        - kubelet 
-        - kubeadm 
-        - kubectl
+        - kubelet=1.23.6-00 
+        - kubeadm=1.23.6-00 
+        - kubectl=1.23.6-00
 
   - name: Configurando o IP do node
     lineinfile:

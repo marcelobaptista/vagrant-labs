@@ -94,9 +94,9 @@
       update_cache: yes
     vars:
       packages:
-        - kubelet 
-        - kubeadm 
-        - kubectl
+        - kubelet=1.23.6-00
+        - kubeadm=1.23.6-00 
+        - kubectl=1.23.6-00
 
   - name: Configurando o IP do node
     lineinfile:
@@ -111,7 +111,7 @@
       state: restarted
 
   - name: Inicializando cluster Kubernetes
-    command: kubeadm init --apiserver-advertise-address="192.168.56.10" --apiserver-cert-extra-sans="192.168.56.10"  --node-name k8s-master --pod-network-cidr=192.168.56.0/21
+    command: kubeadm init --apiserver-advertise-address="192.168.56.10" --apiserver-cert-extra-sans="192.168.56.10" --node-name k8s-master --pod-network-cidr=192.168.0.0/16
     become: yes
 
   - name: Configurando kubeconfig para o usuário vagrant
