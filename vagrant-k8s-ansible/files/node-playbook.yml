@@ -22,7 +22,7 @@
 
   - name: Adicionando repositório apt para o Docker
     apt_repository:
-      repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
+      repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable
       state: present
 
   - name: Instalando Docker e suas dependências

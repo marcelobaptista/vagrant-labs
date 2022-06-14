@@ -51,13 +51,13 @@
       name: pt_BR.UTF-8
       state: present
 
-  - name: Alterando idioma
-    command: localectl set-locale LANG=pt_BR.UTF-8
+  # - name: Alterando idioma
+  #   command: localectl set-locale LANG=pt_BR.UTF-8
 
   - name: Configurando teclado
     shell:
       cmd: |
-        localectl set-keymap br-abnt2
+        localectl set-keymap br-abnt
 
   - name: Reiniciando chrony
     service:
