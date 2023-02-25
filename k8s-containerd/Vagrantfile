@@ -1,0 +1,38 @@
+# N é a quantidade de nodes desejado
+# Trocar IP por um IP da sua rede do VirtualBox
+
+N = 2
+
+Vagrant.configure("2") do |config|
+  config.vm.define "c1-cp1" do |cp|
+    cp.vm.box = "generic/ubuntu2204"
+    cp.vm.hostname = "c1-cp1"
+    cp.vm.network "private_network", ip: "192.168.56.10", :netmask => "255.255.255.0"
+    cp.vm.provision "file", source: "files/.", destination: "/home/vagrant/"
+    cp.vm.provision "shell", path: "instala_containerd.sh"
+    cp.vm.provision "shell", path: "configura_cp.sh"
+    cp.vm.synced_folder "./k8s", "/home/vagrant/k8s"
+      cp.vm.provider "virtualbox" do |cp|
+        cp.customize ["modifyvm", :id, "--chipset", "ich9"]
+        cp.name = "c1-cp1"
+        cp.memory = 8192
+        cp.cpus = 8
+      end
+  end
+  (1..N).each do |i|
+  config.vm.define "c1-node#{i}" do |nodes|
+    nodes.vm.box = "generic/ubuntu2204"
+    nodes.vm.hostname = "c1-node#{i}"
+    nodes.vm.network "private_network", ip: "192.168.56.#{i + 10}", :netmask => "255.255.255.0"
+    nodes.vm.provision "file", source: "files/.", destination: "/home/vagrant/"
+    nodes.vm.provision "shell", path: "instala_containerd.sh"
+    nodes.vm.provision "shell", path: "./k8s/join.sh"
+      nodes.vm.provider "virtualbox" do |nodes|
+        nodes.customize ["modifyvm", :id, "--chipset", "ich9"]
+        nodes.name = "c1-node#{i}"
+        nodes.memory = 2048
+        nodes.cpus = 2
+      end
+  end
+  end
+end
