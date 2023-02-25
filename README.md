@@ -1,25 +1,19 @@
 # Vagrant Labs
 
-Laboratórios configurados durante meu aprendizado em tecnologias DevOps (em andamento)
+Laboratórios configurados durante meu aprendizado em tecnologias DevOps
 
 ## Pré-requisitos
 
 - [Vagrant](https://www.vagrantup.com/downloads)
 - [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-- [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 
 ## Como usar?
 ```sh
 git clone https://github.com/marcelobaptista/vagrant-labs.git
 ```
-### Iniciar o ambiente Zabbix/Grafana:
-```sh 
-cd vagrant-labs/vagrant-zabbix
-vagrant up
-```
 ### Iniciar o ambiente k8s
 ```sh 
-cd vagrant-labs/vagrant-k8s-ansible
+cd vagrant-labs/k8s-containerd
 vagrant up
 ```
 ### Desligar um ambiente
